@@ -249,3 +249,7 @@ ropper --file ./program --search "pop rdi"
 ✅ **Correct:** Values are popped in the order they appear on stack
 
 Think of POP as "taking the top item off a stack of papers and writing it on a whiteboard (register)". The stack gets shorter, and the register gets the value!
+
+Ref:
+https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/rop-chaining-return-oriented-programming
+https://ir0nstone.gitbook.io/notes/binexp/stack/return-oriented-programming
