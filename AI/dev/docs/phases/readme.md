@@ -95,7 +95,7 @@ Each day's documentation should include:
 ## 🔗 Related Documentation
 
 - [Architecture V3](../../bb_architect_v3.md) - Complete system architecture
-- [Phase 1 & 2 Refined Plan](../../PHASE_1_2_REFINED_V3.md) - Detailed implementation plan
+- [Phase 1 & 2 Refined Plan](../PHASE_1_2_REFINED_V3.md) - Detailed implementation plan
 - [Development Roadmap](../DEVELOPMENT_ROADMAP.md) - Overall project roadmap
 - [Day 1 Implementation Guide](../DAY_1_IMPLEMENTATION_GUIDE.md) - Day 1 specific guide
 - [Day 1 Completion Summary](../DAY_1_COMPLETION_SUMMARY.md) - Day 1 results
