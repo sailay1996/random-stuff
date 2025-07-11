@@ -20,7 +20,7 @@ The Bug Bounty MCP Agent V3 is an AI-powered automation framework for bug bounty
 - [x] Performance monitoring and optimization
 - [x] Configuration management system
 - [x] Comprehensive testing suite (6 integration tests)
-- [x] **Documentation**: [Day 1 Details](docs/phases/phase1/day1.md)
+- [x] **Documentation**: [Day 1 Details](phases/phase1/day1.md)
 
 ### Phase 2: Smart Tool Manager Foundation ✅
 **Completed**: Day 2 (Week 2)
@@ -30,7 +30,7 @@ The Bug Bounty MCP Agent V3 is an AI-powered automation framework for bug bounty
 - [x] Intelligent fallback mechanisms
 - [x] Performance tracking and optimization
 - [x] Comprehensive testing suite (39 total tests)
-- [x] **Documentation**: [Day 2 Details](docs/phases/phase1/day2.md)
+- [x] **Documentation**: [Day 2 Details](phases/phase1/day2.md)
 
 ## Development Roadmap (V3 Architecture)
 
