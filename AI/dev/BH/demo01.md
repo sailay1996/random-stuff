@@ -229,25 +229,25 @@ I'll generate the visual dashboard with ASCII charts and comprehensive analytics
 - **Urgency Level:** High (due to critical findings)
 
 **📊 Risk Score Visualization:**
-```
+
 ╭─── Risk Score: 6.5/10 (MEDIUM) ───╮
 │ ████████████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
 │ 0    2    4    6    8    10 │
 ╰──────────────────────────────────────────────╯
-```
+
 
 **🎯 Vulnerability Distribution (Total: 8):**
-```
+
 ╭─────────────────────────────────────────╮
 │ Critical │██████                        │   2
 │ High     │████████████                  │   3
 │ Medium   │████████                      │   2
 │ Low      │████                          │   1
 ╰─────────────────────────────────────────╯
-```
+
 
 **📋 Asset Discovery Summary:**
-```
+
 ╭─────────────────────────────────╮
 │ Subdomains    │       25 found │
 │ Live Hosts    │       12 active│
@@ -267,7 +267,7 @@ I'll generate the visual dashboard with ASCII charts and comprehensive analytics
 The dashboard shows a moderate risk profile with critical vulnerabilities requiring immediate attention. The scan was highly efficient and comprehensive.
 
 Would you like me to show the evidence collection or generate an executive summary?
-```
+
 
 #### **3.3 Evidence Collection Demo**
 
@@ -488,7 +488,7 @@ I'll create a professional delivery package for the example.com assessment with 
 - **Include Reports:** Yes (all formats)
 
 **📦 Package Contents:**
-```
+
 example_com_security_assessment_20250803.zip (45.2 MB)
 ├── reports/
 │   ├── executive_summary.html          # Management presentation
