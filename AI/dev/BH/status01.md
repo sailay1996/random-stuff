@@ -150,6 +150,14 @@ BugHound is an advanced AI-powered bug bounty platform that provides intelligent
 3. **enumerate_subdomains** - Comprehensive subdomain enumeration with AI prioritization
 4. **check_live_hosts** - Check which subdomains are alive using httpx
 5. **smart_recon** - Complete reconnaissance workflow with AI analysis
+    - Step 1: Input validation 
+    - Step 2: Subfinder + crt.sh enumeration 
+    - Step 3: HTTPx live host detection 
+    - Step 4: Deep recon (SKIPPED by default)
+    - Step 5: Vulnerability scanning (SKIPPED by default)
+    - Step 6: Data merging 
+    - Step 7: AI analysis 
+    - Step 8: Text response formatting 
 6. **smart_recon_with_workspace** - Smart recon with automatic workspace integration
 7. **analyze_target** ⭐ - **NEW** Comprehensive target analysis with all Phase 2 features
 
