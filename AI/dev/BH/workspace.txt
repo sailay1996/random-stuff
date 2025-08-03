@@ -1,0 +1,78 @@
+workspaces/
+└── example.com_20240115_143022/
+    ├── recon/
+    │   ├── subdomains/
+    │   │   ├── all_subdomains.txt          # Raw combined list
+    │   │   ├── live_subdomains.json        # HTTPx results
+    │   │   └── sources/                    # Keep track of sources
+    │   │       ├── subfinder.txt
+    │   │       ├── crtsh.txt
+    │   │       └── permutations.txt
+    │   │
+    │   ├── ports/
+    │   │   ├── nmap_results.xml            # Full nmap output
+    │   │   ├── open_ports.json             # Parsed results
+    │   │   └── service_versions.txt        # For CVE matching
+    │   │
+    │   ├── web_discovery/
+    │   │   ├── waybackurls.txt             # Historical URLs
+    │   │   ├── dirsearch_results.txt       # Directory brute force
+    │   │   ├── js_files.txt                # Extracted JS files
+    │   │   ├── parameters.txt              # All found parameters
+    │   │   └── forms.json                  # Detected forms
+    │   │
+    │   └── technology/
+    │       ├── tech_stack.json             # Wappalyzer/whatweb
+    │       ├── headers_analysis.txt        # Security headers
+    │       └── server_info.txt             # Server fingerprinting
+    │
+    ├── ai_intelligence/
+    │   ├── recon_analysis.json             # AI's understanding
+    │   ├── attack_surface_map.json         # Visual representation
+    │   ├── priority_targets.json           # Where to focus
+    │   ├── recommended_exploits.md         # Specific test suggestions
+    │   └── learning_patterns.json          # Improve over time
+    │
+    ├── vulnerabilities/
+    │   ├── automated/
+    │   │   ├── nuclei_results.json         # Template scanning
+    │   │   ├── sqlmap_results.txt          # SQL injection tests
+    │   │   └── xss_findings.json           # XSS detection
+    │   │
+    │   ├── verified/
+    │   │   ├── confirmed_vulns.json        # AI + manual verified
+    │   │   ├── proof_of_concepts/          # PoC code/screenshots
+    │   │   └── exploitation_notes.md       # How to exploit
+    │   │
+    │   └── analysis/
+    │       ├── false_positives.txt         # Filtered out
+    │       ├── severity_ranking.json       # By real impact
+    │       └── correlation_map.json        # Related vulns
+    │
+    ├── monitoring/                          # For continuous testing
+    │   ├── changes/
+    │   │   ├── new_subdomains.txt
+    │   │   ├── new_ports.txt
+    │   │   ├── new_endpoints.txt
+    │   │   └── diff_summary.md
+    │   │
+    │   └── alerts/
+    │       ├── critical_findings.txt       # Immediate attention
+    │       └── notification_log.json       # What was reported
+    │
+    ├── raw_outputs/                         # Keep all tool outputs
+    │   ├── subfinder/
+    │   ├── nmap/
+    │   ├── nuclei/
+    │   └── [tool_name]/
+    │
+    └── reports/
+        ├── findings/
+        │   ├── bug_bounty_report.md        # Ready to submit
+        │   ├── technical_details.pdf       # Full technical
+        │   └── executive_summary.html      # For clients
+        │
+        └── evidence/
+            ├── screenshots/
+            ├── videos/
+            └── payloads.txt
