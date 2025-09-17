@@ -111,3 +111,41 @@ opener=escape.get_function('hello'[4]+'help'[3]+'help'[1]+'none'[2]);fname='fl'+
   Conclusion: The hard jail is properly balanced - it has multiple solution paths but requires expert knowledge and creative thinking. The complexity
   limits prevent trivial approaches while maintaining solvability through sophisticated techniques.
 
+```
+  print(getattr(escape.get_function(format(111, 'c') + format(112, 'c') + format(101, 'c') + format(110, 'c'))(format(102, 'c') + format(108, 'c') + format(97, 'c') + format(103, 'c') + format(46, 'c') + format(116, 'c') + format(120, 'c') + format(116, 'c')), format(114, 'c') + format(101, 'c') + format(97, 'c') + format(100, 'c'))())
+
+print(getattr(escape.get_function(format(111, 'c') + format(112, 'c') + format(101, 'c') + format(110, 'c'))(format(102, 'c') + format(108, 'c') + format(97, 'c') + format(103, 'c') + format(46, 'c') + format(116, 'c') + format(120, 'c') + format(116, 'c')), format(114, 'c') + format(101, 'c') + format(97, 'c') + format(100, 'c'))())
+
+f = escape.get_function(format(111, 'c') + format(112, 'c') + format(101, 'c') + format(110, 'c'))(format(102, 'c') + format(108, 'c') + format(97, 'c') + format(103, 'c') + format(46, 'c') + format(116, 'c') + format(120, 'c') + format(116, 'c')); print(getattr(f, format(114, 'c') + format(101, 'c') + format(97, 'c') + format(100, 'c'))())
+
+f = escape.get_function(format(111, 'c') + format(112, 'c') + format(101, 'c') + format(110, 'c'))(format(102, 'c') + format(108, 'c') + format(97, 'c') + format(103, 'c') + format(46, 'c') + format(116, 'c') + format(120, 'c') + format(116, 'c')); print(getattr(f, format(114, 'c') + format(101, 'c') + format(97, 'c') + format(100, 'c'))())
+
+fname='for'[0]+'hello'[2]+'bar'[1]+'dog'[2]+'.dot'[0]+'text'[0]+'six'[2]+'text'[0];opener=escape.get_function('hello'[4]+'help'[3]+'help'[1]+'none'[2]);f=opener(fname);print(getattr(f,'bar'[2]+'help'[1]+'bar'[1]+'and'[2])())
+
+
+ fname = ''.join(['for'[0], 'hello'[2], 'bar'[1], 'dog'[2], 'v.s'[1], 'text'[0], 'six'[2], 'text'[0]]);opener = escape.get_function(''.join(['hello'[4], 'help'[3], 'help'[1], 'none'[2]]));f = opener(fname);f = opener(fname);print(getattr(f, reader)())
+
+fname = ''.join(['for'[0], 'hello'[2], 'bar'[1], 'dog'[2], 'fixe.py'[4], 'text'[0], 'six'[2], 'text'[0]]);opener = escape.get_function(''.join(['hello'[4], 'help'[3], 'help'[1], 'none'[2]]));f = opener(fname);reader = ''.join(['bar'[2], 'help'[1], 'bar'[1], 'and'[2]]);print(getattr(f, reader)())
+
+
+fname='for'[0]+'hello'[2]+'bar'[1]+'dog'[2]+'.dot'[0]+'text'[0]+'six'[2]+'text'[0];opener=escape.get_function('hello'[4]+'help'[3]+'help'[1]+'none'[2]);file=opener(fname);print(getattr(file,'bar'[2]+'help'[1]+'bar'[1]+'and'[2])())
+
+o=str(type(print))[22];p=str(type(type))[10];e=str(type(type))[11];n=str(type(print))[14];f=str(type(print))[16];l=str(type(type))[2];a=str(type(type)
+     )[3];g=str(range(1))[3];t=str(type(type))[8];x=str(max)[18];r=str(range(1))[0];d=str(type(print))[33];print(getattr(escape.get_function(o+p+e+n)(f+l+a
+     +g+'.'+t+x+t),r+e+a+d)())
+
+print(getattr(escape.get_function(str(type(print))[22]+str(type(type))[10]+str(type(type))[11]+str(type(print))[14])(format(102,'c')+format(108,'c')+format(97,'c')+format(103,'c')+format(46,'c')+format(116,'c')+format(120,'c')+format(116,'c')),format(114,'c')+str(type(type))[11]+format(97,'c')+format(100,'c'))())
+
+opener=escape.get_function('hello'[4]+'help'[3]+'help'[1]+'none'[2]);fname='for'[0]+'hello'[2]+'bar'[1]+'dog'[2]+'.t'+'xt';print(getattr(opener(fname),'r'+'e'+'ad')())
+opener=escape.get_function('hello'[4]+'help'[3]+'help'[1]+'none'[2]);fname='fl'+'ag'+'.t'+'xt';print(getattr(opener(fname),'r'+'e'+'ad')())
+
+print(getattr(escape.get_function("op"+"en")("fl"+"ag."+"tx"+"t"),"re"+"ad")())
+
+f=escape.get_function("op"+"en")("fl"+"ag."+"tx"+"t"); print("".join(f))
+f=escape.get_function("op"+"en")("fl"+"ag."+"tx"+"t"); print(list(f))
+f=escape.get_function("op"+"en")("fl"+"ag."+"tx"+"t"); line, = f; print(line)
+f=escape.get_function("op"+"en")("fl"+"ag."+"tx"+"t"); print(set(f))
+f=escape.get_function("op"+"en")("fl"+"ag."+"tx"+"t"); print(frozenset(f))
+f=escape.get_function("op"+"en")("fl"+"ag."+"tx"+"t"); print(*f, sep="")
+f=escape.get_function("op"+"en")("fl"+"ag."+"tx"+"t"); print(any(print(line, end="") or True for line in f))
+```
