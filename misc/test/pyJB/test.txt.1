@@ -1,5 +1,6 @@
 [(i, (()).__class__.__bases__[0].__subclasses__()[i]) for i in range(120,170)]
 
+[(i, s) for i, s in enumerate((()).__class__.__mro__[1].__subclasses__()) if "pathlib" in str(s).lower()]
 
 
 
