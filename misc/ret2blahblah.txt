@@ -1,0 +1,118 @@
+Comprehensive List of ret2… Exploitation Techniques
+1. ret2libc (Return-to-libc)
+
+Call functions from libc directly (usually system("/bin/sh")), bypassing NX.
+
+2. ret2plt (Return-to-PLT)
+
+Call functions via the Procedure Linkage Table to resolve GOT entries or leak addresses.
+
+3. ret2got (Return-to-GOT Overwrite)
+
+Overwrite GOT entries to redirect execution (often used with format string or partial overwrite).
+
+4. ret2dlresolve
+
+Craft a fake ELF dynamic linker structure in memory and force the dynamic loader to resolve and call any function you want.
+
+5. ret2csu (Call Site Utils)
+
+Use __libc_csu_init gadgets (register setup + call) to call functions with controlled arguments.
+
+6. ret2shellcode
+
+Classic approach where you place shellcode in memory and redirect RIP to it. Only works if NX is disabled.
+
+7. ret2text (ROP in .text)
+
+Chain gadgets entirely inside the program’s .text section (not using libc).
+
+8. ret2data
+
+Jump into writable .data or .bss region where attacker-controlled data lives (rare nowadays because NX but still useful in some contexts).
+
+9. ret2bss
+
+Jump into .bss (writable, uninitialized data section), usually to store ROP chains, strings, or perform stack pivoting.
+
+10. ret2stackpivot / ret2pivot
+
+Pivot the stack to controlled memory (heap or .bss) using gadgets like leave; ret or adjustments to RSP.
+
+11. ret2one_gadget (libc one_gadget)
+
+Jump to special gadgets in libc that spawn a shell if certain register/memory constraints are satisfied.
+
+12. ret2vtables
+
+Hijack C++ virtual function tables (vtable pointers) to gain RIP control.
+
+13. ret2setcontext
+
+Use setcontext in libc to set up registers and stack frame for full ROP chain.
+
+14. ret2sigreturn (SROP)
+
+Trigger a fake signal frame to control registers — extremely powerful (even on x86_64).
+
+15. ret2main / ret2loop
+
+Return back to main or another loop to restart logic with leaked information or fresh state.
+
+16. ret2file_operations / ret2struct
+
+Overwrite function pointers stored in structures such as:
+
+FILE structures (_IO_FILE)
+
+C++ objects
+
+operations tables
+
+Useful in heap exploits.
+
+17. ret2tls / ret2environ
+
+Leak stack or libc addresses by accessing environ or TLS structures.
+
+18. ret2jmp_buf / longjmp Abuse
+
+Overwrite jmp_buf to jump to arbitrary code (similar to sigreturn).
+
+19. ret2syscall (ROP Syscall Chains)
+
+Build a ROP chain that calls syscall directly:
+
+execve("/bin/sh")
+
+mprotect → enable shellcode
+
+open/read/write
+
+20. ret2mprotect
+
+Use a ROP chain to call mprotect to make memory executable, then jump to shellcode.
+
+21. ret2epilogue / ret2return_sequence
+
+Use compiler-generated function epilogues (pop; pop; pop; ret) as gadgets for register control.
+
++++ Most Common in Real CTF / pwn Challenges
+
+If you want to prioritize learning:
+
+ret2libc
+
+ROP chains (ret2syscall / ret2text)
+
+ret2dlresolve
+
+ret2csu gadgets
+
+ret2one_gadget
+
+SROP (ret2sigreturn)
+
+Stack pivoting (ret2pivot)
+
+ret2plt + ret2got leaks
